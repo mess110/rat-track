@@ -34,7 +34,7 @@ get '/analyze/:id' do
 end
 
 post '/analyze/:id' do
-  system "ruby island.rb /home/cristian/pr0n/rat-track/public/videos/#{params[:id]}"
+  system "ruby island.rb /home/cristian/rat-track/current/public/videos/#{params[:id]}"
   redirect "/analyze/#{params[:id]}"
 end
 
