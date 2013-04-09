@@ -20,7 +20,7 @@ var loadCanvasImage = function(src, data) {
       var x = data.offsetX;
       var y = data.offsetY;
       var radius = data.radius;
-  
+
       context.beginPath();
       context.arc(x, y, radius, 0, 2 * Math.PI, false);
       context.lineWidth = 1;
@@ -46,6 +46,12 @@ $(document).ready(function() {
         $('#centerY').val(json['centerY']);
         $('#radius').val(json['radius']);
       }
+
+      var circ = {};
+      circ.offsetX = parseInt($('#centerX').val());
+      circ.offsetY = parseInt($('#centerY').val());
+      circ.radius = parseInt($('#radius').val());
+      drawImage(canvas, circ);
     });
 
     $('#analyze').on('click', function (data) {
@@ -58,11 +64,5 @@ $(document).ready(function() {
       $('#centerY').val(data.offsetY);
       drawImage(canvas, data);
     });
-
-    var data = {};
-    data.offsetX = parseInt($('#centerX').val());
-    data.offsetY = parseInt($('#centerY').val());
-    data.radius = parseInt($('#radius').val());
-    drawImage(canvas, data);
   }
 });

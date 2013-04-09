@@ -10,7 +10,7 @@ set :user, 'cristian'
 ssh_options[:forward_agent] = true
 
 set :scm, :git
-set :repository, 'git@github.com:mess110/rat-track.git'
+set :repository, 'git://github.com/mess110/rat-track.git'
 
 server 'northpole.ro', :app, :primary => true
 set :deploy_to, DEPLOY_TO
@@ -26,7 +26,7 @@ namespace :rat do
   task :start, :roles => :app do
     path = File.join(DEPLOY_TO, 'current')
     sudo 'whoami'
-    run "cd #{path}; rvmsudo bundle exec thin -C ~/rat-track/current/config.yml start"
+    run "cd #{path}; bundle install; rvmsudo bundle exec thin -C ~/rat-track/current/config.yml start"
   end
 
   task :symlink do
