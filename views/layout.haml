@@ -1,0 +1,9 @@
+%html
+  %head
+    %link{:href => '/style.css', :rel => 'stylesheet', :type => 'text/css'}
+  %body
+    %center
+      %img{:src => '/mouse.png', :alt => 'rat track'}
+    = yield
+    %script{:type => 'text/javascript', :src => "/jquery.js"}
+    %script{:type => 'text/javascript', :src => "/app.js"}

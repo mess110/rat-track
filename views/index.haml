@@ -1,0 +1,9 @@
+%center
+  %form(method="post" enctype='multipart/form-data' action='/upload')
+    %input(type='file' name='video')
+    %input(type='submit' value='upload')
+%center
+  %ul{:style => 'list-style-type: none;'}
+    - Dir['public/videos/*'].collect{|c| c.split('/').last}.sort.reverse.each do |v|
+      %li
+        %a{:href => "/analyze/#{v}"}= v

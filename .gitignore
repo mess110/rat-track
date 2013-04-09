@@ -1,0 +1,7 @@
+*.swp
+*.swo
+*~
+log/
+tmp/
+Gemfile.lock
+public/videos
