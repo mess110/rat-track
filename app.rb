@@ -10,7 +10,7 @@ end
 
 def make_movie output
   system "rm #{output}/out.mp4"
-  cmd = "ffmpeg -r 5 -i '#{output}/output_frame%06d.png' -vcodec libx264 #{output}/out.mp4"
+  cmd = "ffmpeg -r 5 -i '#{output}/output_frame%06d.png' #{output}/out.avi"
   system cmd
 end
 
