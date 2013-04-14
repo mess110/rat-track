@@ -1,20 +1,28 @@
-%h1 Step 1 - extract frames
-%p
-  Click
-  %a{:href => "/frames/#{params[:id]}"} here
-  to extract the frames
-%p
-  = movie_frames.count
-  frames found
-%h1 Step 2 - choose pool coordinates
-%canvas#pool{'data-movie-id' => params[:id], 'data-frame-count' => movie_frames.count}
-%form{:action => "/coordinates/#{params[:id]}", :method => 'post'}
-  %input{:type => 'text', :value => '0', :id => 'centerX', :name => 'centerX'}
-  %input{:type => 'text', :value => '0', :id => 'centerY', :name => 'centerY'}
-  %input{:type => 'text', :value => '50', :id => 'radius', :name => 'radius'}
-  %input{:type => 'submit', :value => 'save'}
-%p Note: remember to save
-%h1 Step 3 - analyze
-%p
-  = analyzed_frames.count
-%a{:href => '#', :id => 'analyze'} here
+%center
+  %h1 Step 0 - intro
+  %p Make sure you go through each step
+  %h1 Step 1 - extract frames
+  %p
+    Click
+    %a{:href => "/frames/#{params[:id]}"} here
+    to extract the frames
+  %p
+    = movie_frames.count
+    frames found
+  %h1 Step 2 - choose pool coordinates
+  %canvas#pool{'data-movie-id' => params[:id], 'data-frame-count' => movie_frames.count}
+  %form{:action => "/coordinates/#{params[:id]}", :method => 'post'}
+    %input{:type => 'text', :value => '0', :id => 'centerX', :name => 'centerX'}
+    %input{:type => 'text', :value => '0', :id => 'centerY', :name => 'centerY'}
+    %input{:type => 'text', :value => '50', :id => 'radius', :name => 'radius'}
+    %input{:type => 'submit', :value => 'save'}
+  %p Note: remember to save
+  %h1 Step 3 - analyze
+  %p
+    = analyzed_frames.count
+  %a{:href => '#', :id => 'analyze'} here
+  %h1 Step 4 - make the movie
+  %form{:action => "/make_movie/#{params[:id]}", :method => 'post'}
+    %input{:type => 'submit', :value => 'make movie'}
+  %h1 Step 5 - download movie
+  %a{'href' => '/videos/000000/out.mp4'} here

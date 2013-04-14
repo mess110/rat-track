@@ -8,6 +8,12 @@ def extract_frames input_file, frame_rate, path
   system cmd
 end
 
+def make_movie output
+  system "rm #{output}/out.mp4"
+  cmd = "ffmpeg -r 5 -i '#{output}/output_frame%06d.png' -vcodec libx264 #{output}/out.mp4"
+  system cmd
+end
+
 helpers do
   def movie_frames
     Dir["public/videos/#{params[:id]}/*.png"].delete_if{|f| f.include? 'output_'}
@@ -44,6 +50,11 @@ post '/upload' do
   end
 
   redirect '/'
+end
+
+post '/make_movie/:id' do
+  make_movie "public/videos/#{params[:id]}"
+  redirect "/analyze/#{params[:id]}"
 end
 
 get '/coordinates/:id' do
