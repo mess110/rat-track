@@ -1,9 +1,10 @@
 require 'chunky_png'
 require 'daemons'
 require 'json'
+require 'shellwords'
 
 def log s
-  system "echo #{s} > /home/cristian/pr0n/rat-track/log/thin.log"
+  system "echo #{Shellwords.escape(s.to_s)} > /home/cristian/pr0n/rat-track/log/thin.log"
 end
 
 module ChunkyPNG
@@ -11,9 +12,9 @@ module ChunkyPNG
     attr_reader :center_x, :center_y, :radius
 
     def swimming_pool! center_x, center_y, radius
-      @center_x = center_x # 181
-      @center_y = center_y # 111
-      @radius = radius # 125
+      @center_x = center_x.to_i # 181
+      @center_y = center_y.to_i # 111
+      @radius = radius.to_i # 125
     end
 
     def rat_track!
