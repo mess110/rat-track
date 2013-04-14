@@ -1,5 +1,10 @@
 require 'chunky_png'
 require 'daemons'
+require 'json'
+
+def log s
+  system "echo #{s} > /home/cristian/pr0n/rat-track/log/thin.log"
+end
 
 module ChunkyPNG
   class Image
@@ -57,12 +62,15 @@ module ChunkyPNG
   end
 end
 
+config_file = File.join(ARGV[0], 'coordinates.txt')
+json = JSON.parse(IO.read(config_file))
+
 Daemons.daemonize
 
 # public/videos/000000
 Dir["#{ARGV[0]}/*.png"].sort.each do |f|
   image = ChunkyPNG::Image.from_file(f)
-  image.swimming_pool! 181, 111, 125
+  image.swimming_pool! json['centerX'], json['centerY'] , json['radius']
   image.find_rat
   image.save(f.gsub('frame', 'output_frame'))
 end
